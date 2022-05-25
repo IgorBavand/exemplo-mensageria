@@ -12,15 +12,10 @@ import java.util.List;
 public interface PedidoMapper {
 
     Pedido toModel(PedidoDto pedidoDto);
-
-    PedidoDto toDto(Pedido cliente);
-
-    Pedido toEntity(PedidoDto clienteForm);
-
-    List<PedidoDto> toDtos(List<Pedido> clienteList);
-
+    PedidoDto toDto(Pedido pedido);
+    Pedido toEntity(PedidoForm pedidoForm);
+    List<PedidoDto> toDtos(List<Pedido> pedidos);
     Pedido copiar(Pedido cliente);
-
     void atualizarPedido(PedidoForm form, @MappingTarget Pedido pedido);
 
 }
