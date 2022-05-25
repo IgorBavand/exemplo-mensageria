@@ -14,7 +14,6 @@ import java.util.UUID;
 public class Produto {
 
     @Id
-    @Setter(AccessLevel.PRIVATE)
     @Column(name = "codigo_produto", unique = true, nullable = false, updatable = false)
     private Long codigoProduto;
 
