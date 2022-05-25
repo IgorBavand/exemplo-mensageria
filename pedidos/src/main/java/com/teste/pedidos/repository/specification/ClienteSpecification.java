@@ -2,7 +2,6 @@ package com.teste.pedidos.repository.specification;
 
 import com.teste.pedidos.model.Cliente;
 import com.teste.pedidos.model.Cliente_;
-import com.teste.pedidos.model.Produto_;
 import com.teste.pedidos.service.filter.ClienteFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
