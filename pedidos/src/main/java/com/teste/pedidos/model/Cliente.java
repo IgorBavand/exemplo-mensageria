@@ -15,7 +15,6 @@ import javax.persistence.Table;
 public class Cliente {
 
     @Id
-    @Setter(AccessLevel.PRIVATE)
     @Column(name = "codigo_cliente", unique = true, nullable = false, updatable = false)
     private Long codigoCliente;
 
