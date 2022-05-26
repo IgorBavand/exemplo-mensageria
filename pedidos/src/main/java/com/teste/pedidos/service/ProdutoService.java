@@ -41,7 +41,6 @@ public class ProdutoService {
     public ProdutoDto cadastrarProduto(ProdutoForm produtoForm){
 
         Produto produto = new Produto();
-        produto.setCodigoProduto(produtoForm.getCodigoProduto());
         produto.setNomeProduto(produtoForm.getNomeProduto());
 
         try {
@@ -49,8 +48,6 @@ public class ProdutoService {
         }catch (BadRequestException e){
             throw new BadRequestException("Não foi possivel salval o produto");
         }
-
-
 
         return produtoMapper.toProdutoDto(produto);
     }
