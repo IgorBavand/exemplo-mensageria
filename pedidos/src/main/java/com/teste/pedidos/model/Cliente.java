@@ -2,10 +2,7 @@ package com.teste.pedidos.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -15,6 +12,7 @@ import javax.persistence.Table;
 public class Cliente {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo_cliente", unique = true, nullable = false, updatable = false)
     private Long codigoCliente;
 

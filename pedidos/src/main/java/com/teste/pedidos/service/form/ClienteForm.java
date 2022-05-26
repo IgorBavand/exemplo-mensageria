@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class ClienteForm {
-    private Long codigoCliente;
     private String nomeCliente;
+
 }
