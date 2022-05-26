@@ -8,16 +8,12 @@ import com.teste.pedidos.service.form.PedidoForm;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
@@ -49,7 +45,7 @@ public class PedidoController {
     @ApiOperation(httpMethod = "POST", value = "gerar um pedido", response = PedidoDto[].class)
     @PostMapping("/gerar-pedido")
     public ResponseEntity<PedidoDto> gerarPedido(@RequestBody PedidoForm pedidoForm){
-        return null;
+        return ResponseEntity.ok().body(pedidoService.gerarPedido(pedidoForm));
     }
 
 

@@ -5,6 +5,7 @@ import com.teste.pedidos.model.Produto;
 import lombok.Data;
 
 import java.util.List;
+import java.util.UUID;
 
 @Data
 public class PedidoForm {
@@ -12,5 +13,5 @@ public class PedidoForm {
     private Long codigoCliente;
     private double valorTotal;
     private String enderecoEntrega;
-    private List<Produto> produtos;
+    private List<Long> produtos;
 }

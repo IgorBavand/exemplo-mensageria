@@ -31,7 +31,7 @@ public class Pedido {
     @Column(name = "endereco_entrega")
     private String enderecoEntrega;
 
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "pedido_produtos",
                     joinColumns = @JoinColumn(name = "pedido_id"),
                     inverseJoinColumns = @JoinColumn(name = "produto_id")
@@ -39,6 +39,3 @@ public class Pedido {
     private List<Produto> produtos;
 
 }
-
-
-//código do cliente, código dos produtos, valor total e endereço de entrega
