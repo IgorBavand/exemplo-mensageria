@@ -29,7 +29,6 @@ public class PedidoService {
 
     private final PedidoMapper pedidoMapper;
     private final PedidoRepository pedidoRepository;
-
     private final PedidoProdutosRepository pedidoProdutosRepository;
 
     public Page<PedidoDto> buscarPedidods(PedidoFilter filter, Pageable pageable) throws NotFoundException {
@@ -58,7 +57,6 @@ public class PedidoService {
             PedidoProdutos pedidoProdutos = new PedidoProdutos();
             pedidoProdutos.setPedidoId(pedidoSalvo.getIdPedido());
             pedidoProdutos.setProdutoId(p);
-            System.out.println(p);
             pedidoProdutosRepository.save(pedidoProdutos);
         }
 
