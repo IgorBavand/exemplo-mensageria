@@ -1,7 +1,5 @@
 package com.teste.pedidos.repository.specification;
 
-import com.teste.pedidos.model.Pedido;
-import com.teste.pedidos.model.Pedido_;
 import com.teste.pedidos.model.Produto;
 import com.teste.pedidos.model.Produto_;
 import com.teste.pedidos.service.filter.ProdutoFilter;

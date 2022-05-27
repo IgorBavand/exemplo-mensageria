@@ -1,10 +1,9 @@
 package com.teste.pedidos.controller;
 
-import com.teste.pedidos.repository.specification.PedidoSpecification;
 import com.teste.pedidos.service.PedidoService;
-import com.teste.pedidos.service.dto.PedidoDto;
 import com.teste.pedidos.service.filter.PedidoFilter;
 import com.teste.pedidos.service.form.PedidoForm;
+import dto.PedidoDto;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;

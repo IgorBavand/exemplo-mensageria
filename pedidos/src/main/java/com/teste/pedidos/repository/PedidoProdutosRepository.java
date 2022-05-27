@@ -1,6 +1,5 @@
 package com.teste.pedidos.repository;
 
-import com.teste.pedidos.model.Pedido;
 import com.teste.pedidos.model.PedidoProdutos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

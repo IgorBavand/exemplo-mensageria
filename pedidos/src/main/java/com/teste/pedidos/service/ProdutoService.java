@@ -2,16 +2,11 @@ package com.teste.pedidos.service;
 
 import com.teste.pedidos.exception.BadRequestException;
 import com.teste.pedidos.exception.NotFoundException;
-import com.teste.pedidos.model.Pedido;
 import com.teste.pedidos.model.Produto;
 import com.teste.pedidos.repository.ProdutoRepository;
-import com.teste.pedidos.repository.specification.PedidoSpecification;
 import com.teste.pedidos.repository.specification.ProdutoSpecificartion;
-import com.teste.pedidos.service.dto.PedidoDto;
 import com.teste.pedidos.service.dto.ProdutoDto;
-import com.teste.pedidos.service.filter.PedidoFilter;
 import com.teste.pedidos.service.filter.ProdutoFilter;
-import com.teste.pedidos.service.form.PedidoForm;
 import com.teste.pedidos.service.form.ProdutoForm;
 import com.teste.pedidos.service.mapper.ProdutoMapper;
 import lombok.RequiredArgsConstructor;

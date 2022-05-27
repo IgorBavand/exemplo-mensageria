@@ -2,11 +2,8 @@ package com.teste.pedidos.controller;
 
 import com.teste.pedidos.model.Produto;
 import com.teste.pedidos.service.ProdutoService;
-import com.teste.pedidos.service.dto.PedidoDto;
 import com.teste.pedidos.service.dto.ProdutoDto;
-import com.teste.pedidos.service.filter.PedidoFilter;
 import com.teste.pedidos.service.filter.ProdutoFilter;
-import com.teste.pedidos.service.form.PedidoForm;
 import com.teste.pedidos.service.form.ProdutoForm;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
