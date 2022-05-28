@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -52,7 +53,7 @@ public class PedidoController {
 
     @ApiOperation(httpMethod = "POST", value = "gerar um pedido", response = PedidoDto[].class)
     @PostMapping("/gerar-pedido")
-    public ResponseEntity<PedidoDto> gerarPedido(@RequestBody PedidoForm pedidoForm){
+    public ResponseEntity<PedidoDto> gerarPedido(@RequestBody @Valid PedidoForm pedidoForm){
         return ResponseEntity.ok().body(pedidoService.gerarPedido(pedidoForm));
     }
 

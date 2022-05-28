@@ -7,6 +7,7 @@ import com.teste.pedidos.exception.NotFoundException;
 import com.teste.pedidos.model.Pedido;
 import com.teste.pedidos.model.PedidoProdutos;
 import com.teste.pedidos.model.Produto;
+import com.teste.pedidos.repository.ClienteRepository;
 import com.teste.pedidos.repository.PedidoProdutosRepository;
 import com.teste.pedidos.repository.PedidoRepository;
 import com.teste.pedidos.repository.ProdutoRepository;
@@ -38,6 +39,8 @@ public class PedidoService {
     private final RabbitMqProducer rabbitMqProducer;
     private final ProdutoRepository produtoRepository;
 
+    private final ClienteRepository clienteRepository;
+
     private final PedidoProdutosRepository pedidoProdutosRepository;
 
     public Page<PedidoDto> buscarPedidodos(PedidoFilter filter, Pageable pageable) throws NotFoundException {
@@ -61,6 +64,11 @@ public class PedidoService {
 
     @Transactional
     public PedidoDto gerarPedido(PedidoForm pedidoForm){
+
+
+        if(!clienteRepository.findById(pedidoForm.getCodigoCliente()).isPresent()){
+            throw new BadRequestException("o cliente informado nao foi encontrado.");
+        }
 
         log.info("registrando pedido...");
 
