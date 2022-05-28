@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/pedidos")
@@ -31,7 +32,7 @@ public class PedidoController {
     })
     @GetMapping("/buscar-pedidos")
     public ResponseEntity<List<PedidoDto>> pedidos(PedidoFilter filter, @ApiIgnore Pageable pageable){
-        Page<PedidoDto> pedidos = pedidoService.buscarPedidods(filter, pageable);
+        Page<PedidoDto> pedidos = pedidoService.buscarPedidodos(filter, pageable);
 
         HttpHeaders responseHeaders = new HttpHeaders();
 
@@ -40,6 +41,14 @@ public class PedidoController {
 
         return ResponseEntity.ok().headers(responseHeaders).body(pedidos.getContent());
     }
+
+    @GetMapping("/buscar-pedido/{id}")
+    public ResponseEntity<PedidoDto> pedidoPorId(@PathVariable UUID id){
+        PedidoDto pedido = pedidoService.buscarPedido(id);
+
+        return ResponseEntity.ok().body(pedido);
+    }
+
 
     @ApiOperation(httpMethod = "POST", value = "gerar um pedido", response = PedidoDto[].class)
     @PostMapping("/gerar-pedido")
