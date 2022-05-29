@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -47,7 +48,7 @@ public class ClienteController {
 
     @ApiOperation(httpMethod = "POST", value = "cadastrar um cliente", response = ClienteDto[].class)
     @PostMapping("/cadastrar-cliente")
-    public ResponseEntity<ClienteDto> cadastrarCliente(@RequestBody ClienteForm clienteForm){
+    public ResponseEntity<ClienteDto> cadastrarCliente(@RequestBody @Valid ClienteForm clienteForm){
         return ResponseEntity.ok().body(clienteService.cadastrarCliente(clienteForm));
     }
 }

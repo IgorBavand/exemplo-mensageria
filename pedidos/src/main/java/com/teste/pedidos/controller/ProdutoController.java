@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -47,7 +48,7 @@ public class ProdutoController {
     @ApiOperation(httpMethod = "POST", value = "cadastrar um produto", response = Produto[].class)
     @PostMapping("/cadastrar-produto")
     @ResponseBody
-    public ResponseEntity<ProdutoDto> cadastrarProduto(@RequestBody ProdutoForm produtoForm){
+    public ResponseEntity<ProdutoDto> cadastrarProduto(@RequestBody @Valid ProdutoForm produtoForm){
         return ResponseEntity.ok().body(produtoService.cadastrarProduto(produtoForm));
     }
 }
