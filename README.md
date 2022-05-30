@@ -1,4 +1,4 @@
-# Desafio X-BRAIN
+# Desafio Xbrain
 
 **Premissas:**
 
