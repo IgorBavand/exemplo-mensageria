@@ -23,7 +23,7 @@ sudo docker run -d --hostname my-rabbit2 --name rabbit -p 15672:15672 -p 5672:56
     
 ## Simulação realizada
 
-Para melhor entendimento, também foi implementado o Swagger.
+##
 
 **Cadastro do clente:**
 
@@ -47,8 +47,17 @@ Para melhor entendimento, também foi implementado o Swagger.
 
 ![tabela entregas](https://github.com/IgorBavand/teste-x-brain/blob/master/imagens-readme/entrega.png)
 
+## 
+
+
+### Para melhor entendimento, também foi implementado o *Swagger*.
+
+
+![swagger](https://github.com/IgorBavand/teste-x-brain/blob/master/imagens-readme/swagger.png)
+
 
 ##
+
 
 ### Alguns testes realizados: 
   
