@@ -13,4 +13,6 @@ public class ProdutoDto implements Serializable {
 
     private Long codigoProduto;
     private String nomeProduto;
+    private double preco;
+
 }

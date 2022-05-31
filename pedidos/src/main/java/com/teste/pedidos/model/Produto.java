@@ -21,6 +21,9 @@ public class Produto {
     @Column(name = "nome_produto")
     private String nomeProduto;
 
+    @Column(name = "preco")
+    private double preco;
+
 
 
 }

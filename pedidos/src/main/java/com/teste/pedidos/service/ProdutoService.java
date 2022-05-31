@@ -37,11 +37,12 @@ public class ProdutoService {
 
         Produto produto = new Produto();
         produto.setNomeProduto(produtoForm.getNomeProduto());
+        produto.setPreco(produtoForm.getPreco());
 
         try {
             produtoRepository.save(produto);
         }catch (BadRequestException e){
-            throw new BadRequestException("Não foi possivel salval o produto");
+            throw new BadRequestException("Não foi possivel salvar o produto");
         }
 
         return produtoMapper.toProdutoDto(produto);

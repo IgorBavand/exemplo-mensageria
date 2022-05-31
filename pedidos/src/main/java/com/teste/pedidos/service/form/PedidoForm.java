@@ -13,9 +13,6 @@ public class PedidoForm {
     @NotNull(message = "O cliente nao pode ser nulo")
     private Long codigoCliente;
 
-    @Min(value = 1)
-    private double valorTotal;
-
     @NotBlank(message = "o endereço nao pode ser nulo")
     private String enderecoEntrega;
 

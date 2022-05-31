@@ -70,12 +70,14 @@ public class PedidoService {
             throw new BadRequestException("o cliente informado nao foi encontrado.");
         }
 
+        double valorTotal = 0.0;
+
         log.info("registrando pedido...");
 
         Pedido pedido = new Pedido();
         pedido.setCodigoCliente(pedidoForm.getCodigoCliente());
         pedido.setEnderecoEntrega(pedidoForm.getEnderecoEntrega());
-        pedido.setValorTotal(pedidoForm.getValorTotal());
+        //pedido.setValorTotal(pedidoForm.getValorTotal());
 
         Pedido pedidoSalvo;
         try {
@@ -88,14 +90,20 @@ public class PedidoService {
                 PedidoProdutos pedidoProdutos = new PedidoProdutos();
                 pedidoProdutos.setPedidoId(pedidoSalvo.getIdPedido());
                 pedidoProdutos.setProdutoId(p);
-                produtosPedido.add(produtoRepository.findById(p).get());
+                Produto produto = produtoRepository.findById(p).get();
+                produtosPedido.add(produto);
+                valorTotal = valorTotal+produto.getPreco();
                 pedidoProdutosRepository.save(pedidoProdutos);
             }
+
+            pedido.setValorTotal(valorTotal);
+
+            //atualizando pedido com o valor total
+            pedidoSalvo= pedidoRepository.save(pedido);
 
             pedidoSalvo.setProdutos(produtosPedido);
 
             //Enviando pedido via rabbitmq para ser registrado uma entrega
-
             PedidoDto mensagem = pedidoMapper.toDto(pedidoSalvo);
             rabbitMqProducer.enviarMensagem(Filas.ENTREGA.toString(), mensagem);
 
