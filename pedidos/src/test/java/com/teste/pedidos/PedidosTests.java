@@ -62,7 +62,7 @@ class PedidosTests {
 		//setando cliente(id) que nao existe
 		pedidoForm.setCodigoCliente(675L);
 		pedidoForm.setEnderecoEntrega("Parana");
-		pedidoForm.setValorTotal(190.50);
+		//pedidoForm.setValorTotal(190.50);
 		List<Long> p = new ArrayList<>();
 		p.add(1L);
 		p.add(3L);
@@ -95,7 +95,7 @@ class PedidosTests {
 		PedidoForm pedidoForm = new PedidoForm();
 		pedidoForm.setCodigoCliente(1L);
 		pedidoForm.setEnderecoEntrega("Parana");
-		pedidoForm.setValorTotal(123);
+		//pedidoForm.setValorTotal(123);
 		List<Long> p = new ArrayList<>();
 		p.add(1L);
 		p.add(3L);
