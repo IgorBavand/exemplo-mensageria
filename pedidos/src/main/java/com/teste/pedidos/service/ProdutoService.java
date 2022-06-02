@@ -16,6 +16,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -31,6 +33,15 @@ public class ProdutoService {
             throw new NotFoundException("Nenhum produto encontrado");
         }
         return new PageImpl<>(produtoMapper.toDtos(produtos.getContent()), pageable, produtos.getTotalElements());
+    }
+
+    public ProdutoDto buscarProdutoId(Long id){
+        Optional<Produto> produto = produtoRepository.findById(id);
+
+        if(!produto.isPresent()){
+            throw new NotFoundException("Produto não encontrado.");
+        }
+        return produtoMapper.toProdutoDto(produto.get());
     }
 
     public ProdutoDto cadastrarProduto(ProdutoForm produtoForm){

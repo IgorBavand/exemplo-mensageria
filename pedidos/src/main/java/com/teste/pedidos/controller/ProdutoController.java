@@ -22,6 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/produtos")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class ProdutoController {
 
     private final ProdutoService produtoService;
@@ -44,6 +45,11 @@ public class ProdutoController {
         return ResponseEntity.ok().headers(responseHeaders).body(produtos.getContent());
     }
 
+    @ApiOperation(httpMethod = "GET", value = "buscar produto por id", response = ProdutoDto.class)
+    @GetMapping("/{id}")
+    public ResponseEntity<ProdutoDto> buscarProdutoId(@PathVariable Long id){
+        return ResponseEntity.ok().body(produtoService.buscarProdutoId(id));
+    }
 
     @ApiOperation(httpMethod = "POST", value = "cadastrar um produto", response = Produto[].class)
     @PostMapping("/cadastrar-produto")
