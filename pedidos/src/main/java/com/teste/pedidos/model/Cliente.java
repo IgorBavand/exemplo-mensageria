@@ -18,4 +18,9 @@ public class Cliente {
 
     @Column(name = "nome_cliente")
     private String nomeCliente;
+
+    @Column(name = "email_cliente", unique = true)
+    private String emailCliente;
+
+
 }

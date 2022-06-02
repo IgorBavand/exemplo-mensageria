@@ -9,4 +9,6 @@ public class ClienteDto implements Serializable {
 
     private Long codigoCliente;
     private String nomeCliente;
+    private String emailCliente;
+
 }
