@@ -1,6 +1,7 @@
 package com.teste.pedidos.controller;
 
 import com.teste.pedidos.service.PedidoService;
+import com.teste.pedidos.service.dto.PedidoNewDto;
 import com.teste.pedidos.service.filter.PedidoFilter;
 import com.teste.pedidos.service.form.PedidoForm;
 import dto.PedidoDto;
@@ -32,8 +33,8 @@ public class PedidoController {
             @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query", value = "Número de registros por página."),
     })
     @GetMapping("/buscar-pedidos")
-    public ResponseEntity<List<PedidoDto>> pedidos(PedidoFilter filter, @ApiIgnore Pageable pageable){
-        Page<PedidoDto> pedidos = pedidoService.buscarPedidodos(filter, pageable);
+    public ResponseEntity<List<PedidoNewDto>> pedidos(PedidoFilter filter, @ApiIgnore Pageable pageable){
+        Page<PedidoNewDto> pedidos = pedidoService.buscarPedidodos(filter, pageable);
 
         HttpHeaders responseHeaders = new HttpHeaders();
 
@@ -44,16 +45,16 @@ public class PedidoController {
     }
 
     @GetMapping("/buscar-pedido/{id}")
-    public ResponseEntity<PedidoDto> pedidoPorId(@PathVariable UUID id){
-        PedidoDto pedido = pedidoService.buscarPedido(id);
+    public ResponseEntity<PedidoNewDto> pedidoPorId(@PathVariable UUID id){
+        PedidoNewDto pedido = pedidoService.buscarPedido(id);
 
         return ResponseEntity.ok().body(pedido);
     }
 
 
-    @ApiOperation(httpMethod = "POST", value = "gerar um pedido", response = PedidoDto[].class)
+    @ApiOperation(httpMethod = "POST", value = "gerar um pedido", response = PedidoNewDto[].class)
     @PostMapping("/gerar-pedido")
-    public ResponseEntity<PedidoDto> gerarPedido(@RequestBody @Valid PedidoForm pedidoForm){
+    public ResponseEntity<PedidoNewDto> gerarPedido(@RequestBody @Valid PedidoForm pedidoForm){
         return ResponseEntity.ok().body(pedidoService.gerarPedidoNew(pedidoForm));
     }
 

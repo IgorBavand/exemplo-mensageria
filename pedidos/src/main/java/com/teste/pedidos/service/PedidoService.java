@@ -10,6 +10,7 @@ import com.teste.pedidos.model.PedidoProdutos;
 import com.teste.pedidos.model.Produto;
 import com.teste.pedidos.repository.*;
 import com.teste.pedidos.repository.specification.PedidoSpecification;
+import com.teste.pedidos.service.dto.PedidoNewDto;
 import com.teste.pedidos.service.filter.PedidoFilter;
 import com.teste.pedidos.service.form.PedidoForm;
 import com.teste.pedidos.service.mapper.PedidoMapper;
@@ -39,7 +40,7 @@ public class PedidoService {
     //private final PedidoProdutosRepository pedidoProdutosRepository;
     private final PedidoProdutoRepositoryNew pedidoProdutoRepositoryNew;
 
-    public Page<PedidoDto> buscarPedidodos(PedidoFilter filter, Pageable pageable) throws NotFoundException {
+    public Page<PedidoNewDto> buscarPedidodos(PedidoFilter filter, Pageable pageable) throws NotFoundException {
         Page<Pedido> pedidos = pedidoRepository.findAll(PedidoSpecification.of(filter), pageable);
         log.info("buscando pedidos..");
         if (!pedidos.hasContent()) {
@@ -48,7 +49,7 @@ public class PedidoService {
         return new PageImpl<>(pedidoMapper.toDtos(pedidos.getContent()), pageable, pedidos.getTotalElements());
     }
 
-    public PedidoDto buscarPedido(UUID idPedido) throws NotFoundException {
+    public PedidoNewDto buscarPedido(UUID idPedido) throws NotFoundException {
         Optional<Pedido> pedido = pedidoRepository.findById(idPedido);
         log.info("buscando pedidos..");
         if (!pedido.isPresent()) {
@@ -58,7 +59,7 @@ public class PedidoService {
     }
 
     @Transactional
-    public PedidoDto gerarPedidoNew(PedidoForm pedidoForm) {
+    public PedidoNewDto gerarPedidoNew(PedidoForm pedidoForm) {
         Pedido pedido = new Pedido();
         pedido.setCodigoCliente(pedidoForm.getCodigoCliente());
         pedido.setEnderecoEntrega(pedidoForm.getEnderecoEntrega());
@@ -66,6 +67,7 @@ public class PedidoService {
         pedido = pedidoRepository.save(pedido);
 
         Set<PedidoProdutoNew> produtosSalvos = new HashSet<>();
+        double valorTotal = 0;
         for (Long produtId : pedidoForm.getProdutos()) {
             var produto = produtoRepository.findById(produtId).get();
 
@@ -74,7 +76,22 @@ public class PedidoService {
             p.setProduto(produto);
             produtosSalvos.add(p);
             pedidoProdutoRepositoryNew.save(p);
+            valorTotal = valorTotal + produto.getPreco();
         }
+
+
+        PedidoDto pedidoDto = new PedidoDto();
+        pedidoDto.setIdPedido(pedido.getIdPedido());
+        pedidoDto.setCodigoCliente(pedidoForm.getCodigoCliente());
+        pedidoDto.setEnderecoEntrega(pedidoForm.getEnderecoEntrega());
+        pedidoDto.setValorTotal(valorTotal);
+
+        //atualizando pedido com o valor total
+        pedido.setValorTotal(valorTotal);
+        pedidoRepository.save(pedido);
+
+        PedidoDto mensagem = pedidoDto;
+        rabbitMqProducer.enviarMensagem(Filas.ENTREGA.toString(), mensagem);
         pedido.setItems(produtosSalvos);
         return pedidoMapper.toDto(pedido);
     }
