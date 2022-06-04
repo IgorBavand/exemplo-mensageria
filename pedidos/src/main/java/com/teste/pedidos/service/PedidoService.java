@@ -5,12 +5,10 @@ import com.teste.pedidos.config.rabbitmq.producer.RabbitMqProducer;
 import com.teste.pedidos.exception.BadRequestException;
 import com.teste.pedidos.exception.NotFoundException;
 import com.teste.pedidos.model.Pedido;
+import com.teste.pedidos.model.PedidoProdutoNew;
 import com.teste.pedidos.model.PedidoProdutos;
 import com.teste.pedidos.model.Produto;
-import com.teste.pedidos.repository.ClienteRepository;
-import com.teste.pedidos.repository.PedidoProdutosRepository;
-import com.teste.pedidos.repository.PedidoRepository;
-import com.teste.pedidos.repository.ProdutoRepository;
+import com.teste.pedidos.repository.*;
 import com.teste.pedidos.repository.specification.PedidoSpecification;
 import com.teste.pedidos.service.filter.PedidoFilter;
 import com.teste.pedidos.service.form.PedidoForm;
@@ -24,10 +22,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -41,12 +36,13 @@ public class PedidoService {
 
     private final ClienteRepository clienteRepository;
 
-    private final PedidoProdutosRepository pedidoProdutosRepository;
+    //private final PedidoProdutosRepository pedidoProdutosRepository;
+    private final PedidoProdutoRepositoryNew pedidoProdutoRepositoryNew;
 
     public Page<PedidoDto> buscarPedidodos(PedidoFilter filter, Pageable pageable) throws NotFoundException {
         Page<Pedido> pedidos = pedidoRepository.findAll(PedidoSpecification.of(filter), pageable);
         log.info("buscando pedidos..");
-        if(!pedidos.hasContent()){
+        if (!pedidos.hasContent()) {
             throw new NotFoundException("Nenhum pedido encontrado");
         }
         return new PageImpl<>(pedidoMapper.toDtos(pedidos.getContent()), pageable, pedidos.getTotalElements());
@@ -55,66 +51,31 @@ public class PedidoService {
     public PedidoDto buscarPedido(UUID idPedido) throws NotFoundException {
         Optional<Pedido> pedido = pedidoRepository.findById(idPedido);
         log.info("buscando pedidos..");
-        if(!pedido.isPresent()){
+        if (!pedido.isPresent()) {
             throw new NotFoundException("Nenhum pedido encontrado");
         }
         return pedidoMapper.toDto(pedido.get());
     }
 
-
     @Transactional
-    public PedidoDto gerarPedido(PedidoForm pedidoForm){
-
-
-        if(!clienteRepository.findById(pedidoForm.getCodigoCliente()).isPresent()){
-            throw new BadRequestException("o cliente informado nao foi encontrado.");
-        }
-
-        double valorTotal = 0.0;
-
-        log.info("registrando pedido...");
-
+    public PedidoDto gerarPedidoNew(PedidoForm pedidoForm) {
         Pedido pedido = new Pedido();
         pedido.setCodigoCliente(pedidoForm.getCodigoCliente());
         pedido.setEnderecoEntrega(pedidoForm.getEnderecoEntrega());
-        //pedido.setValorTotal(pedidoForm.getValorTotal());
+        pedido.setValorTotal(0D);
+        pedido = pedidoRepository.save(pedido);
 
-        Pedido pedidoSalvo;
-        try {
+        Set<PedidoProdutoNew> produtosSalvos = new HashSet<>();
+        for (Long produtId : pedidoForm.getProdutos()) {
+            var produto = produtoRepository.findById(produtId).get();
 
-             pedidoSalvo = pedidoRepository.save(pedido);
-
-            List<Produto> produtosPedido = new ArrayList<>();
-            for (Long p : pedidoForm.getProdutos()) {
-                log.info("cadastrando produto do pedido...");
-                PedidoProdutos pedidoProdutos = new PedidoProdutos();
-                pedidoProdutos.setPedidoId(pedidoSalvo.getIdPedido());
-                pedidoProdutos.setProdutoId(p);
-                Produto produto = produtoRepository.findById(p).get();
-                produtosPedido.add(produto);
-                valorTotal = valorTotal+produto.getPreco();
-                pedidoProdutosRepository.save(pedidoProdutos);
-            }
-
-            pedido.setValorTotal(valorTotal);
-
-            //atualizando pedido com o valor total
-            pedidoSalvo= pedidoRepository.save(pedido);
-
-            pedidoSalvo.setProdutos(produtosPedido);
-
-            //Enviando pedido via rabbitmq para ser registrado uma entrega
-            PedidoDto mensagem = pedidoMapper.toDto(pedidoSalvo);
-            rabbitMqProducer.enviarMensagem(Filas.ENTREGA.toString(), mensagem);
-
-        }catch (BadRequestException e)
-        {
-            throw new BadRequestException("Algo deu errado ao gerar o pedido, tente novamente.");
+            PedidoProdutoNew p = new PedidoProdutoNew();
+            p.setPedido(pedido);
+            p.setProduto(produto);
+            produtosSalvos.add(p);
+            pedidoProdutoRepositoryNew.save(p);
         }
-
-        return pedidoMapper.toDto(pedidoSalvo);
+        pedido.setItems(produtosSalvos);
+        return pedidoMapper.toDto(pedido);
     }
-
-
-
 }

@@ -54,7 +54,7 @@ public class PedidoController {
     @ApiOperation(httpMethod = "POST", value = "gerar um pedido", response = PedidoDto[].class)
     @PostMapping("/gerar-pedido")
     public ResponseEntity<PedidoDto> gerarPedido(@RequestBody @Valid PedidoForm pedidoForm){
-        return ResponseEntity.ok().body(pedidoService.gerarPedido(pedidoForm));
+        return ResponseEntity.ok().body(pedidoService.gerarPedidoNew(pedidoForm));
     }
 
 

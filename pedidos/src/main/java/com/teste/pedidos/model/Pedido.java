@@ -1,10 +1,11 @@
 package com.teste.pedidos.model;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Data
 @Entity
@@ -18,7 +19,8 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Setter(AccessLevel.PRIVATE)
-    @Column(columnDefinition = "BINARY(16)", name = "id_pedido", unique = true, nullable = false, updatable = false)
+    @Column(name = "id_pedido", unique = true, nullable = false, updatable = false)
+    @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID idPedido;
 
     @Column(name = "codigo_cliente")
@@ -30,11 +32,14 @@ public class Pedido implements Serializable {
     @Column(name = "endereco_entrega")
     private String enderecoEntrega;
 
-    @ManyToMany
+    /*@OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "pedido_produtos",
-                    joinColumns = @JoinColumn(name = "pedido_id"),
-                    inverseJoinColumns = @JoinColumn(name = "produto_id")
+                    joinColumns = @JoinColumn(name = "pedido_id", referencedColumnName = "id_pedido"),
+                    inverseJoinColumns = @JoinColumn(name = "produto_id", referencedColumnName = "codigo_produto")
     )
-    private List<Produto> produtos;
+    private List<Produto> produtos = new ArrayList<>();
+     */
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<PedidoProdutoNew> items = new HashSet<>();
 
 }

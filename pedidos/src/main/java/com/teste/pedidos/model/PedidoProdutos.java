@@ -8,9 +8,9 @@ import javax.persistence.*;
 import java.util.UUID;
 
 
-@Entity
+//@Entity
 @Data
-@Table(name = "pedido_produtos")
+//@Table(name = "pedido_produtos")
 @AllArgsConstructor
 @NoArgsConstructor
 public class PedidoProdutos {

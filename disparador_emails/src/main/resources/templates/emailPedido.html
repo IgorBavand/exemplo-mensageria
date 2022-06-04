@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//PT" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Email de notificação de cadastro</title>
+    <meta name="viewport" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+</head>
+
+<style>
+    @media only screen and (max-width: 590px) {
+      * {
+        width: 100%;
+      }
+    }
+  </style>
+
+<body style="border: 0; margin: 0; padding: 0; outline: none; color: #17205b">
+<center>
+
+    <tr>
+        <td>
+            <img
+                    th:src="|cid:${imagemCabecalho}|"
+                    height="120"
+                    width="100%"
+            />
+        </td>
+    </tr>
+
+
+    <tr>
+        <td style="padding: 0px; padding-left: 20px">
+            <p style="font-size: 20px; margin-bottom: 0px; color: #17205b">
+                <b th:text="'Nova solicitação do condomínio'"></b><br/>
+                <b th:text="'Condomínio: ' + ${nomeCondominio}"></b><br/>
+            </p>
+
+            <p style="font-size: 16px; margin-bottom: 0px; color: blue" th:text="'Nome do sindico: ' + ${nomeSindico}"><br/>
+            <p style="font-size: 16px; margin-bottom: 0px; color: blue" th:text="'Telefone: ' + ${telefone}"><br/>
+            <p style="font-size: 16px; margin-bottom: 0px; color: blue" th:text="'E-mail: ' + ${email}"><br/>
+            <p style="font-size: 16px; margin-bottom: 0px; color: blue" th:text="'Endereço: ' + ${endereco}"><br/>
+            <p style="font-size: 16px; margin-bottom: 0px; color: blue" th:text="'Cidade: ' + ${cidade} + ' '+ ${estado} + ' CEP: ' + ${cep}"><br/>
+
+            <p style="font-size: 16px; margin-bottom: 0px; color: blue" th:text="'Data da solicitação: ' + ${data} + '  ' + ${hora}"><br/>
+
+            </p>
+        </td>
+    </tr>
+
+
+</center>
+
+</body>
+</html>

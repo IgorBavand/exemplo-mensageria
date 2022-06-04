@@ -69,7 +69,7 @@ class PedidosTests {
 		p.add(2L);
 		pedidoForm.setProdutos(p);
 
-		Assertions.assertThrows(BadRequestException.class, () -> pedidoService.gerarPedido(pedidoForm));
+		Assertions.assertThrows(BadRequestException.class, () -> pedidoService.gerarPedidoNew(pedidoForm));
 	}
 
 	@Test
