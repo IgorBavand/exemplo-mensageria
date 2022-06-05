@@ -12,6 +12,7 @@ import java.util.UUID;
 public class PedidoNewDto implements Serializable {
     private UUID idPedido;
     private Long codigoCliente;
+    private String nomeCliente;
     private double valorTotal;
     private String enderecoEntrega;
     private Set<PedidoProdutoNew> produtos;
