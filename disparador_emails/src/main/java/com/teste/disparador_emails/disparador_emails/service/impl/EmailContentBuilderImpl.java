@@ -40,6 +40,8 @@ public class EmailContentBuilderImpl implements EmailContentBuilder {
         contextThymeleaf.setVariable("nomeCliente", emailPedidoDto.getNomeCliente());
         contextThymeleaf.setVariable("endereco", "Russas");
 
+
+
         contextThymeleaf.setVariable("data", data);
         contextThymeleaf.setVariable("hora", hora);
      //   contextThymeleaf.setVariable("imagemCabecalho", "logo");

@@ -12,4 +12,5 @@ public class EmailPedidoDto implements Serializable {
     private String assunto;
     private UUID codigoPedido;
     private String nomeCliente;
+    private String enderecoEntrega;
 }
