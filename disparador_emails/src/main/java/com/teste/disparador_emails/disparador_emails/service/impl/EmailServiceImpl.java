@@ -45,7 +45,7 @@ public class EmailServiceImpl implements EmailService {
             disparadorEmail.send(emailPreparator);
             log.info("O e-mail foi enviado com sucesso.");
         } catch (Exception exception) {
-            log.info("Erro ao enviar e-mail de confirmação de conta. Motivo: " + exception.getMessage());
+            log.info("Erro ao enviar e-mail. Motivo: " + exception.getMessage());
         }
     }
 

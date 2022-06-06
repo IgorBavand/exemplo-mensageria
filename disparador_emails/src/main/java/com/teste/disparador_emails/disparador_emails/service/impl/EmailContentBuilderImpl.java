@@ -35,13 +35,8 @@ public class EmailContentBuilderImpl implements EmailContentBuilder {
         String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
         String hora = new SimpleDateFormat("HH:mm:ss").format(dataHoraAtual);
 
-
-
         contextThymeleaf.setVariable("nomeCliente", emailPedidoDto.getNomeCliente());
-        contextThymeleaf.setVariable("endereco", "Russas");
-
-
-
+        contextThymeleaf.setVariable("endereco", emailPedidoDto.getEnderecoEntrega());
         contextThymeleaf.setVariable("data", data);
         contextThymeleaf.setVariable("hora", hora);
      //   contextThymeleaf.setVariable("imagemCabecalho", "logo");
