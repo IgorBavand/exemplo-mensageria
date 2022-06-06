@@ -16,8 +16,6 @@ public class EmailPedidoConsumer{
 
     @RabbitListener(queues = "EMAIL_PEDIDO")
     private void enviarEmailPedido(EmailPedidoDto emailPedidoDto){
-        System.out.println("---------------------------------");
-        System.out.println(emailPedidoDto);
         log.info("Novo pedido recebido, enviando email para fornecedor...");
         emailService.enviarEmailPedido(emailPedidoDto);
     }

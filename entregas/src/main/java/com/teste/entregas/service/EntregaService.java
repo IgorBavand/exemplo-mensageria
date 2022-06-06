@@ -22,20 +22,6 @@ public class EntregaService {
     private final EntregaRepository entregaRepository;
     private final ListagemProdutosRepository listagemProdutosRepository;
 
-//    public ResponseEntity<String> salvarEntrega(PedidoDto pedidoDto){
-//        Entrega entrega = new Entrega();
-//        entrega.setEnderecoEntrega(pedidoDto.getEnderecoEntrega());
-//        entrega.setIdPedido(pedidoDto.getIdPedido());
-//        entrega.setStatusPedido(StatusPedido.PENDENTE);
-//        log.info("registrando entrega");
-//        entregaRepository.save(entrega);
-//
-//        return ResponseEntity.ok().body("ENTREGA_REGISTRADA");
-//    }
-
-
-
-
     public List<ListagemProdutos> buscarProdutosDoPedido(UUID idPediddo){
         List<ListagemProdutos> p = listagemProdutosRepository.findProdutosPedido(idPediddo);
 

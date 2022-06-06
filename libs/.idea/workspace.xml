@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e937371-a3ef-4ab7-bb59-3a55a369a06d" name="Changes" comment="feat: criando nova fila dos emails">
-      <change beforePath="$PROJECT_DIR$/../disparador_emails/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../disparador_emails/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../disparador_emails/src/main/java/com/teste/disparador_emails/disparador_emails/config/rabbitmq/RabbitMqConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../disparador_emails/src/main/java/com/teste/disparador_emails/disparador_emails/config/rabbitmq/consumer/EmailPedidoConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../disparador_emails/src/main/java/com/teste/disparador_emails/disparador_emails/config/rabbitmq/consumer/EmailPedidoConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../disparador_emails/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../disparador_emails/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../entregas/src/main/java/com/teste/entregas/config/rabbitmq/RabbitMqConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../entregas/src/main/java/com/teste/entregas/config/rabbitmq/consumer/RabbitMqConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../entregas/src/main/java/com/teste/entregas/config/rabbitmq/consumer/RabbitMqConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../entregas/src/main/java/com/teste/entregas/model/Entrega.java" beforeDir="false" afterPath="$PROJECT_DIR$/../entregas/src/main/java/com/teste/entregas/model/Entrega.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../entregas/src/main/java/com/teste/entregas/service/EntregaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../entregas/src/main/java/com/teste/entregas/service/EntregaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/PedidoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dto/PedidoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/config/rabbitmq/RabbitMqConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/config/rabbitmq/RabbitMqConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/model/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/model/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/model/Pedido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/model/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/model/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/service/PedidoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/service/PedidoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
