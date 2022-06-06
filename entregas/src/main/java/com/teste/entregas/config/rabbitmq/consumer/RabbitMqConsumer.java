@@ -1,5 +1,8 @@
 package com.teste.entregas.config.rabbitmq.consumer;
 
+import com.teste.entregas.model.Entrega;
+import com.teste.entregas.model.enums.StatusPedido;
+import com.teste.entregas.repository.EntregaRepository;
 import com.teste.entregas.service.EntregaService;
 import dto.PedidoDto;
 import lombok.RequiredArgsConstructor;
@@ -12,13 +15,18 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class RabbitMqConsumer {
 
-    private final EntregaService entregaService;
+    private final EntregaRepository entregaRepository;
+
 
     @RabbitListener(queues = "ENTREGA")
     private void consumidor(PedidoDto pedidoDto){
-        //System.out.println(pedidoDto);
-        //System.out.println("---------------------------------");
+
         log.info("Novo pedido recebido, chamando serviço de registro de entrega");
-        entregaService.salvarEntrega(pedidoDto);
+        Entrega entrega = new Entrega();
+        entrega.setEnderecoEntrega(pedidoDto.getEnderecoEntrega());
+        entrega.setIdPedido(pedidoDto.getIdPedido());
+        entrega.setStatusPedido(StatusPedido.PENDENTE);
+        log.info("registrando entrega");
+        entregaRepository.save(entrega);
     }
 }
