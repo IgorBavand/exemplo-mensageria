@@ -38,4 +38,9 @@ http://localhost:8060
 http://localhost:8070
 ~~~
 
+**Descrição:**
+
+    Após ser enviado um pedido, o mesmo será enviado via RabbitMQ para o serviço de **Entregas** para ser resgistrada uma nova entrega;
+    Também será enviado para o serviço de **Disparador de Emails** para ser alertado ao fornecedor do novo pedido.
+
 
