@@ -2,9 +2,9 @@
 
 **Premissas:**
 
-    Criar uma API usando Spring Boot, que faz parte da nossa stack.
-    Utilizar um banco de dados em memória (HSQLDB ou H2)
-    Não é necessário desenvolver front-end, apenas o back-end.
+    Criar uma API usando Spring Boot;
+    Utilizar um banco de dados MySQL;
+    Apenas o back-end;
 
 
 **Teste:**
@@ -20,49 +20,22 @@
 ~~~docker
 sudo docker run -d --hostname my-rabbit2 --name rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
 ~~~
-    
-## Simulação realizada
+   
+## URLs
 
-##
+### Serviço de Pedidos
+~~~port
+http://localhost:8050
+~~~
 
-**Cadastro do clente:**
+### Serviço de Entregas
+~~~port
+http://localhost:8060
+~~~
 
-![cadastro cliente](https://github.com/IgorBavand/teste-x-brain/blob/master/imagens-readme/cliente.png)
-
-## 
-
-**Cadastro dos produtos:**
-
-![cadastro produto](https://github.com/IgorBavand/teste-x-brain/blob/master/imagens-readme/produto.png)
-
-## 
-
-**Gerando o pedido:**
-
-![gerar pedido](https://github.com/IgorBavand/teste-x-brain/blob/master/imagens-readme/pedido.png)
-
-## 
-
-**Ao gerar o pedido é enviado a fila de entrega pelo RabbitMQ, é o serviço de entrega o registra na tabela de entregas**
-
-![tabela entregas](https://github.com/IgorBavand/teste-x-brain/blob/master/imagens-readme/entrega.png)
-
-## 
-
-
-### Para melhor entendimento, também foi implementado o *Swagger*.
-
-
-![swagger](https://github.com/IgorBavand/teste-x-brain/blob/master/imagens-readme/swagger.png)
-
-
-##
-
-
-### Alguns testes realizados: 
-  
-  ![testes](https://github.com/IgorBavand/teste-x-brain/blob/master/imagens-readme/testes.png)
-
-  
+### Serviço de Disparador de Emails
+~~~port
+http://localhost:8070
+~~~
 
 
