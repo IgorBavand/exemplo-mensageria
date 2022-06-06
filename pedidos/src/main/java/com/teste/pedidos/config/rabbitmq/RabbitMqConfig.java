@@ -35,15 +35,22 @@ public class RabbitMqConfig {
     @PostConstruct
     private void adiciona(){
         Queue filaEntregas = this.fila(Filas.ENTREGA.toString());
+        Queue filaEmailPedido = this.fila(Filas.EMAIL_PEDIDO.toString());
+
         DirectExchange troca = this.trocaDireta();
+
         Binding ligacao = this.relacionamento(filaEntregas, troca);
+        Binding ligacaoEmailPedido = this.relacionamento(filaEmailPedido, troca);
 
         //Criando as filas no RabbitMQ
         this.amqpAdmin.declareQueue(filaEntregas);
 
+        this.amqpAdmin.declareQueue(filaEmailPedido);
+
         this.amqpAdmin.declareExchange(troca);
 
         this.amqpAdmin.declareBinding(ligacao);
+        this.amqpAdmin.declareBinding(ligacaoEmailPedido);
     }
 }
 

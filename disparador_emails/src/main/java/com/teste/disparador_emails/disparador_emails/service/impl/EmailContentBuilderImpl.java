@@ -1,6 +1,7 @@
 package com.teste.disparador_emails.disparador_emails.service.impl;
 
 import com.teste.disparador_emails.disparador_emails.service.EmailContentBuilder;
+import dto.EmailPedidoDto;
 import dto.PedidoDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,8 +23,13 @@ public class EmailContentBuilderImpl implements EmailContentBuilder {
     private final ITemplateEngine templateEngine;
 
 
+
+
     @Override
-    public String buildEmailPedido(PedidoDto pedidoDto) {
+    public String buildEmailPedido(EmailPedidoDto emailPedidoDto) {
+
+        contextThymeleaf = new Context();
+
 
         Date dataHoraAtual = new Date();
         String data = new SimpleDateFormat("dd/MM/yyyy").format(dataHoraAtual);
@@ -31,6 +37,14 @@ public class EmailContentBuilderImpl implements EmailContentBuilder {
 
 
 
-        return null;
+        contextThymeleaf.setVariable("nomeCliente", emailPedidoDto.getNomeCliente());
+        contextThymeleaf.setVariable("endereco", "Russas");
+
+        contextThymeleaf.setVariable("data", data);
+        contextThymeleaf.setVariable("hora", hora);
+     //   contextThymeleaf.setVariable("imagemCabecalho", "logo");
+        return templateEngine.process("emailPedido", contextThymeleaf);
+
+
     }
 }

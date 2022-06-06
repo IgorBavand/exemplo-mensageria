@@ -2,18 +2,20 @@ package com.teste.pedidos.service;
 
 import com.teste.pedidos.config.rabbitmq.Filas;
 import com.teste.pedidos.config.rabbitmq.producer.RabbitMqProducer;
-import com.teste.pedidos.exception.BadRequestException;
 import com.teste.pedidos.exception.NotFoundException;
+import com.teste.pedidos.model.Cliente;
 import com.teste.pedidos.model.Pedido;
 import com.teste.pedidos.model.PedidoProdutoNew;
-import com.teste.pedidos.model.PedidoProdutos;
-import com.teste.pedidos.model.Produto;
-import com.teste.pedidos.repository.*;
+import com.teste.pedidos.repository.ClienteRepository;
+import com.teste.pedidos.repository.PedidoProdutoRepositoryNew;
+import com.teste.pedidos.repository.PedidoRepository;
+import com.teste.pedidos.repository.ProdutoRepository;
 import com.teste.pedidos.repository.specification.PedidoSpecification;
 import com.teste.pedidos.service.dto.PedidoNewDto;
 import com.teste.pedidos.service.filter.PedidoFilter;
 import com.teste.pedidos.service.form.PedidoForm;
 import com.teste.pedidos.service.mapper.PedidoMapper;
+import dto.EmailPedidoDto;
 import dto.PedidoDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +25,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -92,6 +97,19 @@ public class PedidoService {
 
         PedidoDto mensagem = pedidoDto;
         rabbitMqProducer.enviarMensagem(Filas.ENTREGA.toString(), mensagem);
+
+        EmailPedidoDto emailPedidoDto = new EmailPedidoDto();
+
+        emailPedidoDto.setCodigoPedido(pedido.getIdPedido());
+        Optional<Cliente> cliente = clienteRepository.findById(pedido.getCodigoCliente());
+        emailPedidoDto.setEmailDestinatario(cliente.get().getEmailCliente());
+        emailPedidoDto.setAssunto("Novo Pedido Cadastrado");
+        emailPedidoDto.setNomeCliente(cliente.get().getNomeCliente());
+
+        EmailPedidoDto mensagemEmailPedido = emailPedidoDto;
+
+        rabbitMqProducer.enviarMensagem(Filas.EMAIL_PEDIDO.toString(), mensagemEmailPedido);
+
         pedido.setItems(produtosSalvos);
         return pedidoMapper.toDto(pedido);
     }

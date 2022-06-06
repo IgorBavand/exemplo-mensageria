@@ -1,6 +1,7 @@
 package com.teste.disparador_emails.disparador_emails.config.rabbitmq.consumer;
 
-import dto.PedidoDto;
+import com.teste.disparador_emails.disparador_emails.service.EmailService;
+import dto.EmailPedidoDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -11,11 +12,13 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class EmailPedidoConsumer{
 
+    private final EmailService emailService;
+
     @RabbitListener(queues = "EMAIL_PEDIDO")
-    private void consumidor(PedidoDto pedidoDto){
-        //System.out.println(pedidoDto);
-        //System.out.println("---------------------------------");
-        log.info("Novo pedido recebido, chamando serviço de registro de entrega");
-        //entregaService.salvarEntrega(pedidoDto);
+    private void enviarEmailPedido(EmailPedidoDto emailPedidoDto){
+        System.out.println("---------------------------------");
+        System.out.println(emailPedidoDto);
+        log.info("Novo pedido recebido, enviando email para fornecedor...");
+        emailService.enviarEmailPedido(emailPedidoDto);
     }
 }

@@ -5,6 +5,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Data
@@ -32,14 +34,20 @@ public class Pedido implements Serializable {
     @Column(name = "endereco_entrega")
     private String enderecoEntrega;
 
-    /*@OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "pedido_produtos",
-                    joinColumns = @JoinColumn(name = "pedido_id", referencedColumnName = "id_pedido"),
-                    inverseJoinColumns = @JoinColumn(name = "produto_id", referencedColumnName = "codigo_produto")
-    )
-    private List<Produto> produtos = new ArrayList<>();
-     */
     @OneToMany(mappedBy = "id.pedido")
     private Set<PedidoProdutoNew> items = new HashSet<>();
+
+    @Column(name = "data", columnDefinition = "TIMESTAMP")
+    private LocalDate data;
+
+    @Column(name = "hora" , columnDefinition = "VARCHAR(5)")
+    private String hora;
+
+    @PrePersist
+    public void prePersist(){
+        LocalDateTime date = LocalDateTime.now();
+        data = LocalDate.of(date.getYear(),date.getMonthValue(),date.getDayOfMonth());
+        hora = date.getHour() + ":" + date.getMinute();
+    }
 
 }

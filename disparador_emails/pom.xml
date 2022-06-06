@@ -165,13 +165,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-feign</artifactId>
-			<version>1.4.6.RELEASE</version>
-		</dependency>
-
-
-		<dependency>
 			<groupId>org.libs.xbrain</groupId>
 			<artifactId>libs</artifactId>
 			<version>1.0-SNAPSHOT</version>

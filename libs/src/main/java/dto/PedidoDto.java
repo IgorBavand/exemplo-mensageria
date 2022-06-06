@@ -13,6 +13,6 @@ public class PedidoDto implements Serializable {
     private Long codigoCliente;
     private double valorTotal;
     private String enderecoEntrega;
-    private List<ProdutoDto> produtos;
+    //private List<ProdutoDto> produtos;
 
 }

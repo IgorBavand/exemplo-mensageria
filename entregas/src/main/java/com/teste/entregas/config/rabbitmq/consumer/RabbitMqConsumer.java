@@ -1,7 +1,5 @@
 package com.teste.entregas.config.rabbitmq.consumer;
 
-import com.teste.entregas.config.rabbitmq.Filas;
-
 import com.teste.entregas.service.EntregaService;
 import dto.PedidoDto;
 import lombok.RequiredArgsConstructor;
