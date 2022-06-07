@@ -29,7 +29,7 @@ public class Pedido implements Serializable {
     private Long codigoCliente;
 
     @Column(name = "valor_total")
-    private double valorTotal;
+    private Double valorTotal;
 
     @Column(name = "endereco_entrega")
     private String enderecoEntrega;

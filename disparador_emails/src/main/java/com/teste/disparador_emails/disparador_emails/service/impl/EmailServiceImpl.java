@@ -36,8 +36,9 @@ public class EmailServiceImpl implements EmailService {
             MimeMessagePreparator emailPreparator = mimeMessage -> {
                 MimeMessageHelper email = new MimeMessageHelper(mimeMessage, true, "UTF-8");
                 email.setTo("hosp.site1@gmail.com");
-                email.setFrom(emailFrom, "Pedido");
-                email.setSubject("Pedido - Notificação de Pedido");
+                //tenta com o segundo parametro se o primeiro n tiver setado
+                email.setFrom(emailFrom, "disparador.teste@gmail.com");
+                email.setSubject(emailPedidoDto.getAssunto());
                 String content = emailContentBuilder.buildEmailPedido(emailPedidoDto);
                 email.setText(content, true);
 

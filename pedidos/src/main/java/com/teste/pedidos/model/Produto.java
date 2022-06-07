@@ -38,6 +38,4 @@ public class Produto {
         data = LocalDate.of(date.getYear(),date.getMonthValue(),date.getDayOfMonth());
         hora = date.getHour() + ":" + date.getMinute();
     }
-
-
 }

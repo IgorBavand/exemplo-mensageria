@@ -23,15 +23,15 @@ public class ProdutoTests {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Test
-    void verificarCadastroProdutoOk() throws Exception {
-        Produto produto = new Produto();
-
-        produto.setNomeProduto("bicicleta");
-
-        mockMvc.perform(post("/produtos/cadastrar-produto")
-                        .contentType("application/json")
-                        .content(objectMapper.writeValueAsString(produto)))
-                .andExpect(status().isOk());
-    }
+//    @Test
+//    void verificarCadastroProdutoOk() throws Exception {
+//        Produto produto = new Produto();
+//
+//        produto.setNomeProduto("bicicleta");
+//
+//        mockMvc.perform(post("/produtos/cadastrar-produto")
+//                        .contentType("application/json")
+//                        .content(objectMapper.writeValueAsString(produto)))
+//                .andExpect(status().isOk());
+//    }
 }

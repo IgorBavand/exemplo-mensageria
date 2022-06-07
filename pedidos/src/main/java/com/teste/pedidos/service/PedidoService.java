@@ -105,6 +105,8 @@ public class PedidoService {
         emailPedidoDto.setEmailDestinatario(cliente.get().getEmailCliente());
         emailPedidoDto.setAssunto("Novo Pedido Cadastrado");
         emailPedidoDto.setNomeCliente(cliente.get().getNomeCliente());
+        emailPedidoDto.setEnderecoEntrega(pedido.getEnderecoEntrega());
+        emailPedidoDto.setValorTotal(pedido.getValorTotal());
 
         EmailPedidoDto mensagemEmailPedido = emailPedidoDto;
 
