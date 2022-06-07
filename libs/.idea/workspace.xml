@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e937371-a3ef-4ab7-bb59-3a55a369a06d" name="Changes" comment="feat: criando nova fila dos emails">
-      <change beforePath="$PROJECT_DIR$/../disparador_emails/src/main/java/com/teste/disparador_emails/disparador_emails/service/impl/EmailContentBuilderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../disparador_emails/src/main/java/com/teste/disparador_emails/disparador_emails/service/impl/EmailContentBuilderImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/EmailPedidoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dto/EmailPedidoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/dto/PedidoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dto/PedidoDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/libs-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/libs-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-    </list>
+    <list default="true" id="3e937371-a3ef-4ab7-bb59-3a55a369a06d" name="Changes" comment="feat: adicionando campo de endereco no dto do email" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,7 +74,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654476223674</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: adicionando campo de endereco no dto do email">
+      <created>1654496027243</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1654496027243</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -99,6 +99,7 @@
     <MESSAGE value="feat: adicionando EmailPedidoDto" />
     <MESSAGE value="feat: implementando status do pedido" />
     <MESSAGE value="feat: criando nova fila dos emails" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: criando nova fila dos emails" />
+    <MESSAGE value="feat: adicionando campo de endereco no dto do email" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: adicionando campo de endereco no dto do email" />
   </component>
 </project>

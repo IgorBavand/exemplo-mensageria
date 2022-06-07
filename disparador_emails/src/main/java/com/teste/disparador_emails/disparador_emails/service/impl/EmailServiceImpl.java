@@ -3,9 +3,9 @@ package com.teste.disparador_emails.disparador_emails.service.impl;
 import com.teste.disparador_emails.disparador_emails.service.EmailContentBuilder;
 import com.teste.disparador_emails.disparador_emails.service.EmailService;
 import dto.EmailPedidoDto;
-import dto.PedidoDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,6 +14,8 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 
 @Slf4j
@@ -39,18 +41,36 @@ public class EmailServiceImpl implements EmailService {
                 String content = emailContentBuilder.buildEmailPedido(emailPedidoDto);
                 email.setText(content, true);
 
-                //FileSystemResource resCabecalho = this.createImage("logo.png", "png");
-                //email.addInline("logo", resCabecalho, "image/png");
+                FileSystemResource resCabecalho = this.createImage("cabecalho.png", "png");
+                email.addInline("cabecalho", resCabecalho, "image/png");
             };
             disparadorEmail.send(emailPreparator);
+            deleteImagem();
             log.info("O e-mail foi enviado com sucesso.");
         } catch (Exception exception) {
             log.info("Erro ao enviar e-mail. Motivo: " + exception.getMessage());
         }
     }
 
-    @Override
+    private void deleteImagem() {
+        if (fileTemp != null) {
+            fileTemp.delete();
+        }
+    }
+
     public FileSystemResource createImage(String fileName, String ext) {
-        return null;
+        FileSystemResource f = null;
+        try {
+            fileTemp = File.createTempFile(UUID.randomUUID().toString(), "." + ext);
+
+            FileUtils.copyInputStreamToFile(this.getClass().getResourceAsStream("/static/image/" + fileName), fileTemp);
+
+            f = new FileSystemResource(fileTemp);
+
+        } catch (IOException e) {
+            throw new Exception("Problema ao criar imagem do email. motivo: " + e.getMessage());
+        } finally {
+            return f;
+        }
     }
 }

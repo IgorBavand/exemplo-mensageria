@@ -22,9 +22,6 @@ public class EmailContentBuilderImpl implements EmailContentBuilder {
     private Context contextThymeleaf;
     private final ITemplateEngine templateEngine;
 
-
-
-
     @Override
     public String buildEmailPedido(EmailPedidoDto emailPedidoDto) {
 
@@ -39,7 +36,7 @@ public class EmailContentBuilderImpl implements EmailContentBuilder {
         contextThymeleaf.setVariable("endereco", emailPedidoDto.getEnderecoEntrega());
         contextThymeleaf.setVariable("data", data);
         contextThymeleaf.setVariable("hora", hora);
-     //   contextThymeleaf.setVariable("imagemCabecalho", "logo");
+        contextThymeleaf.setVariable("imagemCabecalho", "cabecalho");
         return templateEngine.process("emailPedido", contextThymeleaf);
 
 
