@@ -1,40 +1,36 @@
-package com.teste.pedidos.model;
+package com.teste.disparador_emails.disparador_emails.model;
+
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "pedidos")
+@Table(name = "historico_emails")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pedido implements Serializable {
-
+public class HistoricoEmails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Setter(AccessLevel.PRIVATE)
-    @Column(name = "id_pedido", unique = true, nullable = false, updatable = false)
+    @Column(name = "id_historico_email", unique = true, nullable = false, updatable = false)
     @Type(type = "org.hibernate.type.UUIDCharType")
-    private UUID idPedido;
+    private UUID idHistoricoEmail;
 
-    @Column(name = "codigo_cliente")
-    private Long codigoCliente;
+    @Column(name = "remetente")
+    private String remetente;
 
-    @Column(name = "valor_total")
-    private Double valorTotal;
+    @Column(name = "destinatario")
+    private String destinatario;
 
-    @Column(name = "endereco_entrega")
-    private String enderecoEntrega;
-
-    @OneToMany(mappedBy = "id.pedido")
-    private Set<PedidoProdutoNew> items = new HashSet<>();
+    @Column(name = "assunto")
+    private String assunto;
 
     @Column(name = "data", columnDefinition = "TIMESTAMP")
     private LocalDate data;
@@ -48,5 +44,7 @@ public class Pedido implements Serializable {
         data = LocalDate.of(date.getYear(),date.getMonthValue(),date.getDayOfMonth());
         hora = date.getHour() + ":" + date.getMinute();
     }
+
+
 
 }

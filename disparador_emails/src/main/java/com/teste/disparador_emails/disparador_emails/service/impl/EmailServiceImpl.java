@@ -1,5 +1,7 @@
 package com.teste.disparador_emails.disparador_emails.service.impl;
 
+import com.teste.disparador_emails.disparador_emails.model.HistoricoEmails;
+import com.teste.disparador_emails.disparador_emails.repository.HistoricoEmailsRepository;
 import com.teste.disparador_emails.disparador_emails.service.EmailContentBuilder;
 import com.teste.disparador_emails.disparador_emails.service.EmailService;
 import dto.EmailPedidoDto;
@@ -25,6 +27,8 @@ public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender disparadorEmail;
     private final EmailContentBuilder emailContentBuilder;
+
+    private final HistoricoEmailsRepository historicoEmailsRepository;
     private File fileTemp;
     @Value("${spring.mail.username}")
     private String emailFrom;
@@ -41,13 +45,21 @@ public class EmailServiceImpl implements EmailService {
                 email.setSubject(emailPedidoDto.getAssunto());
                 String content = emailContentBuilder.buildEmailPedido(emailPedidoDto);
                 email.setText(content, true);
-
                 FileSystemResource resCabecalho = this.createImage("cabecalho.png", "png");
                 email.addInline("cabecalho", resCabecalho, "image/png");
             };
+
             disparadorEmail.send(emailPreparator);
             deleteImagem();
             log.info("O e-mail foi enviado com sucesso.");
+
+            //SALVANDO NO HISTORICO DE EMAILS
+            HistoricoEmails historicoEmails = new HistoricoEmails();
+            historicoEmails.setRemetente(emailFrom);
+            historicoEmails.setAssunto(emailPedidoDto.getAssunto());
+            historicoEmails.setDestinatario("hosp.site1@gmail.com");
+            historicoEmailsRepository.save(historicoEmails);
+            log.info("Salvando no histórico de emails.");
         } catch (Exception exception) {
             log.info("Erro ao enviar e-mail. Motivo: " + exception.getMessage());
         }

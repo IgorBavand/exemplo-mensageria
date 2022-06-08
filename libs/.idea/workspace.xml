@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e937371-a3ef-4ab7-bb59-3a55a369a06d" name="Changes" comment="feat: adicionando campo de endereco no dto do email">
-      <change beforePath="$PROJECT_DIR$/../disparador_emails/src/main/java/com/teste/disparador_emails/disparador_emails/service/impl/EmailContentBuilderImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../disparador_emails/src/main/java/com/teste/disparador_emails/disparador_emails/service/impl/EmailContentBuilderImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../disparador_emails/src/main/java/com/teste/disparador_emails/disparador_emails/service/impl/EmailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../disparador_emails/src/main/java/com/teste/disparador_emails/disparador_emails/service/impl/EmailServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../disparador_emails/src/main/resources/templates/emailPedido.html" beforeDir="false" afterPath="$PROJECT_DIR$/../disparador_emails/src/main/resources/templates/emailPedido.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../disparador_emails/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../disparador_emails/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/EmailPedidoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dto/EmailPedidoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/dto/EmailPedidoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/dto/EmailPedidoDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/libs-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/libs-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/model/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/model/Pedido.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/model/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/model/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/service/PedidoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pedidos/src/main/java/com/teste/pedidos/service/PedidoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pedidos/src/test/java/com/teste/pedidos/ProdutoTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pedidos/src/test/java/com/teste/pedidos/ProdutoTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
