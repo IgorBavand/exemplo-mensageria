@@ -77,14 +77,13 @@ public class PedidoService {
         Pedido pedido = new Pedido();
         pedido.setCodigoCliente(pedidoForm.getCodigoCliente());
         pedido.setEnderecoEntrega(pedidoForm.getEnderecoEntrega());
-        //pedido.setValorTotal(pedidoForm.getValorTotal());
-
         Pedido pedidoSalvo;
+        
         try {
 
-             pedidoSalvo = pedidoRepository.save(pedido);
-
+            pedidoSalvo = pedidoRepository.save(pedido);
             List<Produto> produtosPedido = new ArrayList<>();
+            
             for (Long p : pedidoForm.getProdutos()) {
                 log.info("cadastrando produto do pedido...");
                 PedidoProdutos pedidoProdutos = new PedidoProdutos();
@@ -97,13 +96,8 @@ public class PedidoService {
             }
 
             pedido.setValorTotal(valorTotal);
-
-            //atualizando pedido com o valor total
             pedidoSalvo= pedidoRepository.save(pedido);
-
             pedidoSalvo.setProdutos(produtosPedido);
-
-            //Enviando pedido via rabbitmq para ser registrado uma entrega
             PedidoDto mensagem = pedidoMapper.toDto(pedidoSalvo);
             rabbitMqProducer.enviarMensagem(Filas.ENTREGA.toString(), mensagem);
 
